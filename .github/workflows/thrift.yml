@@ -71,7 +71,7 @@ jobs:
       run: ./bootstrap.sh
 
     - name: Configure
-      run: ./configure
+      run: ./configure GRADLE_OPTS=-Pmvn.repo=https://repo1.maven.org/maven2
 
     - name: Make
       run: make -j$(nproc)
