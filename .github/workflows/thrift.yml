@@ -71,10 +71,7 @@ jobs:
       run: ./bootstrap.sh
 
     - name: Configure
-      run: ./configure \
-        --with-haskell=no \
-        --with-php=no --with-php_extension=no \
-        GRADLE_OPTS=-Pmvn.repo=https://repo1.maven.org/maven2
+      run: ./configure --with-haskell=no --with-php=no --with-php_extension=no GRADLE_OPTS=-Pmvn.repo=https://repo1.maven.org/maven2
 
     - name: Make
       run: make -j$(nproc)
