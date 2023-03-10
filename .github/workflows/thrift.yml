@@ -36,7 +36,7 @@ on:
         description: 'The stable release of Apache Thrift Compiler'
       jdk:
         required: true
-        default: ''
+        default: '8'
         description: 'Java version, 8 11, 17 etc'
 
 
@@ -65,6 +65,7 @@ jobs:
       with:
         distribution: temurin
         java-version: ${{ github.event.inputs.jdk }}
+        cache: 'gradle'
 
     - name: Bootstrap
       run: ./bootstrap.sh
