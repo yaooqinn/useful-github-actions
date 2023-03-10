@@ -38,7 +38,7 @@ on:
 
 jobs:
   defualt:
-   name: Compile Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.thrift_version }}
+   name: Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.thrift_version }}
    runs-on: ubuntu-latest
    steps:
     - name: checkout myself
@@ -49,6 +49,12 @@ jobs:
       with:
         repository: 'apache/thrift'
         ref: ${{ github.event.inputs.ref }}
+
+    # https://thrift.apache.org/docs/install/debian.html
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -yq
+        sudo apt-get install -y --no-install-recommends g++ automake bison flex git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config
 
     - name: Bootstrap
       run: ./bootstrap.sh
