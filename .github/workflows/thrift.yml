@@ -47,7 +47,7 @@ jobs:
   java:
    name: ${{ github.event.inputs.lang }} ${{ github.event.inputs.jdk }} with thrift ${{ github.event.inputs.ref }}
    runs-on: ubuntu-latest
-   if: github.event.inputs.langa == 'java'
+   if: github.event.inputs.lang == 'java'
    steps:
     - name: Checkout thrift repository
       uses: actions/checkout@v3
