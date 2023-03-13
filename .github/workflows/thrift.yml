@@ -47,7 +47,7 @@ jobs:
   java:
    name: Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.ref }}
    runs-on: ubuntu-latest
-   if: ${{ github.event.inputs.lang }} == 'java'
+   if: github.event.inputs.lang == 'java'
    steps:
     - name: Checkout thrift repository
       uses: actions/checkout@v3
@@ -78,12 +78,15 @@ jobs:
           --disable-dependency-tracking \
           --without-cpp \
           --without-c_glib \
+          --without-csharp \
+          --without-dotnetcore \
           --with-java \
           --with-kotlin \
           --without-python \
           --without-py3 \
           --without-ruby \
           --without-haxe \
+          --without-haskell \
           --without-netstd \
           --without-perl \
           --without-php \
@@ -125,7 +128,7 @@ jobs:
   go:
     name: Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.ref }}
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.lang }} == 'go'
+    if: github.event.inputs.lang == 'go'
     steps:
       - name: Checkout thrift repository
         uses: actions/checkout@v3
@@ -153,12 +156,15 @@ jobs:
             --disable-dependency-tracking \
             --without-cpp \
             --without-c_glib \
+            --without-csharp \
+            --without-dotnetcore \
             --without-java \
             --without-kotlin \
             --without-python \
             --without-py3 \
             --without-ruby \
             --without-haxe \
+            --without-haskell \
             --without-netstd \
             --without-perl \
             --without-php \
