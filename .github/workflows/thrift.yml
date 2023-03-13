@@ -45,9 +45,9 @@ on:
 
 jobs:
   java:
-   name: Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.ref }}
+   name: ${{ github.event.inputs.lang }} ${{ github.event.inputs.jdk }} with thrift ${{ github.event.inputs.ref }}
    runs-on: ubuntu-latest
-   if: github.event.inputs.lang == 'java'
+   if: github.event.inputs.langa == 'java'
    steps:
     - name: Checkout thrift repository
       uses: actions/checkout@v3
@@ -115,9 +115,11 @@ jobs:
       run: curl -O ${{ github.event.inputs.idl }}
 
     - name: Generate
-      run: thrift -r -o ./genarated --gen ${{ github.event.inputs.lang }} *.thrift
+      run: |
+        mkdir genarated
+        thrift -r -o ./genarated --gen ${{ github.event.inputs.lang }} *.thrift
 
-    - name: Upload reuslts
+    - name: Upload results
       uses: actions/upload-artifact@v3
       with:
         name: generated
@@ -126,7 +128,7 @@ jobs:
         retention-days: 3
 
   go:
-    name: Compile ${{ github.event.inputs.lang }} with Thrift ${{ github.event.inputs.ref }}
+    name: ${{ github.event.inputs.lang }} ${{ github.event.inputs.go }} with thrift ${{ github.event.inputs.ref }}
     runs-on: ubuntu-latest
     if: github.event.inputs.lang == 'go'
     steps:
@@ -192,7 +194,9 @@ jobs:
         run: curl -O ${{ github.event.inputs.idl }}
 
       - name: Generate
-        run: thrift -r -o ./genarated --gen ${{ github.event.inputs.lang }} *.thrift
+        run: |
+          mkdir genarated
+          thrift -r -o ./genarated --gen ${{ github.event.inputs.lang }} *.thrift
 
       - name: Upload reuslts
         uses: actions/upload-artifact@v3
